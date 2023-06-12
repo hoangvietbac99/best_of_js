@@ -1,0 +1,42 @@
+.wrapper-about-page{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    padding: 0 30px;
+    justify-content: center;
+    .container{
+        width: 1000px;
+        padding: 30px 0;
+        height: fit-content;
+        color: var(--color-text-h1-h2);
+        h1{
+            font-size: 32px;
+        }
+        .content{
+            padding: 25px;
+            margin-top: 20px;
+            width: 100%;
+            height: fit-content;
+            background-color: #ffffff;
+            div{
+                margin-bottom: 35px;
+                h3{
+                    margin-bottom: 10px;
+                }
+                p{
+                    margin-bottom: 7px;
+                    a{
+                        color: #d66556;
+                        text-decoration: none;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                    .icon{
+                        color: #d66556;
+                    }
+                }
+            }
+        }
+    }
+}
