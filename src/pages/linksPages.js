@@ -1,11 +1,12 @@
 const linkPages = {
   homePage: '/',
-  projectPage: '/project',
-  info: 'project/:name',
+  projectPage: '/projects',
+  info: 'projects/:full_name',
   tagsPage: '/tags',
-  monthlyRanking: '/monthly-ranking',
+  monthlyRanking: '/monthly',
   hallOfFame: '/hall-of-fame',
   timeline: '/timeline',
-  about: '/about'
+  about: '/about',
+  featurePage: '/featured'
 };
 export default linkPages;
