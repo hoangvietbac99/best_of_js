@@ -1,0 +1,186 @@
+.wrapper-header-main{
+    width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container{
+        .header-left{
+            display: flex;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 60px;
+            .logo{
+                height: 100%;
+                display: flex;
+                align-items: center;
+                .logo-page{
+                    width: 130px;
+                    object-fit: cover;
+                }
+            }
+            .menu-page{
+                height: 100%;
+                width: inherit;
+                display: flex;
+                align-items: center;
+                .pages{
+                    align-items: center;
+                    display: flex;
+                    margin: 0 30px;
+                    height: 100%;
+                    .btn-page{
+                        cursor: pointer;
+                        margin-right: 20px;
+                        min-width: 60px;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        .link-page{
+                            color: var(--color-text);
+                            text-decoration: none;
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 16px;
+                            transition: all .3s ease;
+                            &:hover{
+                                color:var(--color-text-active) ;
+                            }
+                        }
+                        .text-color{
+                            color: var(--color-text-active);
+                        }
+                        .line{
+                            position: absolute;
+                            bottom: 0;
+                            height: 5px;
+                            width: 100%;      
+                            border-top-left-radius:5px ;                      
+                            border-top-right-radius:5px ;                      
+                        }
+                        .active-line{
+                            transition: all .3s ease;
+                            background-color: var(--color-text-active);
+                        }
+                    }
+                    
+                }
+                .more-page{
+                    cursor: pointer;
+                    background-color: transparent;
+                    border: none;
+                    margin-left:-30px;
+                    width:100px;
+                    height: 40px;
+                    border-radius: 5px;
+                    color: var(--color-text);
+                    font-size: 16px;
+                    transition: all .3s ease;
+                    &:hover{
+                        background-color: var(--color-hover);
+                    }
+                    &:active{
+                        border: 2px solid var(--color-text-active);
+                    }
+                    .icon{
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+        .header-right{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 250px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            .account-theme{
+                align-items: center;
+                justify-content: space-between;
+                display: flex;
+                width: 55%;
+                height: 100%;
+                .btn-account{
+                    cursor: pointer;
+                    width: 80px;
+                    height: 40px;
+                    border-radius: 5px;
+                    border: 1px solid rgb(207, 207, 207);
+                    background-color: transparent;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    transition: all .3s ease;
+                    &:hover{
+                        background-color: var(--color-hover);
+                    }
+                    &:active{
+                        border: 2px solid var(--color-text-active);
+                    }
+                    .avt-account{
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background-color: var(--color-text);
+                    }
+                    .icon{
+                        color: var(--color-text);
+                        width: 15px;
+                    }
+                }
+                .theme{
+                    cursor: pointer;
+                    background-color: transparent;
+                    border: none;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 5px;
+                    margin-right: 15px;
+                    &:hover{
+                        background-color: #c7b7b7;
+                        transition: all .3s ease;
+                    }
+                    
+                }
+            }
+            .partition{
+                width: 1px;
+                height: 50%;
+                background-color: rgb(187, 187, 187);
+            }
+            .discord-github{
+                width: 45%;
+                height: 100%;
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+                .link-to{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 5px;
+                    margin-left: 15px;
+                    &:hover{
+                        background-color: #c7b7b7;
+                    }
+                }
+            }
+            .icon{
+                width: 25px;
+                height: 25px;
+                border-radius: 5px;
+                color: var(--color-text); 
+            }
+        }
+    }
+}

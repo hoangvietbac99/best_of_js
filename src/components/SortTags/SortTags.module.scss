@@ -1,0 +1,24 @@
+.wrapper-sort-tags{
+    width: 200px;
+    height: fit-content;
+    padding: 10px 0;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid rgb(211, 208, 208);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    .container{
+        .item{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 17px;
+            display: flex;
+            width: 100%;
+            height: 35px;
+            padding: 0 10px;
+            &:hover{
+                background-color: var(--color-hover-2)
+            }
+        }
+    }
+}

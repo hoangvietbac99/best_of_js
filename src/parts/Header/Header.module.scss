@@ -1,0 +1,25 @@
+.wrapper-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .container{
+        width: 100%;
+        display: block;
+        .header-main{
+            padding: 0 30px;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+        }
+        .header-search{
+            padding: 0 30px;
+            height: 70px;
+            width: 100%;
+            background-image: linear-gradient(to right,#ed9836,#c05621);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
