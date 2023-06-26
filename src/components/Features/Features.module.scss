@@ -50,7 +50,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-bottom: 1px dashed  var(--color-border);
+                border-bottom: 1px dashed var(--color-border);
                 background-color: var(--background-color-card);
                 text-decoration: none;
                 span{
@@ -77,4 +77,4 @@
     100% {
       width: 100%;
     }
-  }
+}
