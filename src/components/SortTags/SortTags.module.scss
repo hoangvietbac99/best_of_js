@@ -2,11 +2,12 @@
     width: 200px;
     height: fit-content;
     padding: 10px 0;
-    background-color: #ffffff;
+    background-color: var(--background-color-card);
     border-radius: 5px;
     border: 1px solid rgb(211, 208, 208);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     .container{
+        color: var( --color-text-p);
         .item{
             cursor: pointer;
             display: flex;
@@ -17,7 +18,7 @@
             height: 35px;
             padding: 0 10px;
             &:hover{
-                background-color: var(--color-hover-2)
+                background-color: var(--background-color-hover-drop)
             }
         }
     }
