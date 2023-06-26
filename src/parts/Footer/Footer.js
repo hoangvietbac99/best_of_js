@@ -38,7 +38,6 @@ function Footer() {
   return (
     <footer className={cx('wrapper-footer')}>
       <div className={cx('wrapper-container')}>
-        <div className={cx('scroll-top')}></div>
         <div className={cx('container')}>
           <section className={cx('footer-top')}>
             <div className={cx('logo-github')}>

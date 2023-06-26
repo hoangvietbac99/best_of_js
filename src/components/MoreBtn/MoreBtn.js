@@ -6,27 +6,27 @@ const cx = classNames.bind(styles);
 const morePages = [
   {
     title: 'Monthly rankings',
-    to: linkPages.monthlyRanking
+    link: linkPages.monthlyRanking
   },
   {
     title: 'Hall of fame',
-    to: linkPages.hallOfFame
+    link: linkPages.hallOfFame
   },
   {
     title: 'Timeline',
-    to: linkPages.timeline
+    link: linkPages.timeline
   },
   {
     title: 'About',
-    to: linkPages.about
+    link: linkPages.about
   },
   {
     title: 'Rising Starts',
-    to: '/'
+    link: 'https://risingstars.js.org/2022/en'
   },
   {
     title: 'State of JS',
-    to: '/'
+    link: 'https://stateofjs.com/en-us/'
   }
 ];
 function MoreBtn() {
@@ -34,7 +34,7 @@ function MoreBtn() {
     <div className={cx('wrapper-dropdown')}>
       <div className={cx('container')}>
         {morePages.map((page, index) => (
-          <Link key={index} to={page.to} className={cx('link-page')}>
+          <Link key={index} to={page.link} className={cx('link-page')}>
             <div className={cx('item-dropdown')}>{page.title}</div>
           </Link>
         ))}

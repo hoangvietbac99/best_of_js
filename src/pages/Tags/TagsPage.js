@@ -1,15 +1,50 @@
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
 import styles from './TagsPage.module.scss';
+import { useEffect, useState } from 'react';
+import kyProjects from '../../api/kyProject';
+import Tippy from '@tippyjs/react/headless';
 import TagsPopular from '../../components/TagsPopular/TagsPopular';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 import SortTags from '../../components/SortTags/SortTags';
+
 const cx = classNames.bind(styles);
 
 function TagsPage() {
   const [visible, setVisible] = useState(false);
+  const [page, setPage] = useState({ start: 0, end: 20 });
+  const [length, setLenght] = useState(0);
+  const [tag, setTag] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await kyProjects.get('projects.json').json();
+        setTag(response.tags.slice(page.start, page.end));
+        setLenght(response.tags.length);
+      } catch (error) {
+        console.log('Failed', error);
+      }
+    }
+    getData();
+  }, [page]);
+  const handlePrev = () => {
+    if (page.start > 1) {
+      setPage({ start: page.start - 20, end: page.end - 20 });
+    } else {
+      return;
+    }
+  };
+  const handleNext = () => {
+    if (page.end < length - 1) {
+      if (page.end > length - 20) {
+        setPage({ start: page.start + 20, end: length });
+      } else {
+        setPage({ start: page.start + 20, end: page.end + 20 });
+      }
+    } else {
+      return;
+    }
+  };
   const sort = (attrs) => (
     <div tabIndex="-1" {...attrs}>
       <div className={cx('wrapper-dropdown-more')}>
@@ -30,23 +65,23 @@ function TagsPage() {
               render={sort}
               onClickOutside={() => setVisible(false)}>
               <button className={cx('sort')} onClick={() => setVisible(!visible)}>
-                Sort: By total number of stars
+                Sort: By total number of projects
                 <FontAwesomeIcon className={cx('icon')} icon={faChevronDown} />
               </button>
             </Tippy>
             <div className={cx('arrow-pages')}>
-              {`Showing 1 - 20 of 224 `}
-              <button>
-                <FontAwesomeIcon icon={faChevronLeft} />
+              <span>{`Showing ${page.start + 1} - ${page.end} of ${length} `}</span>
+              <button onClick={() => handlePrev()}>
+                <FontAwesomeIcon className={cx('icon')} icon={faChevronLeft} />
               </button>
-              <button>
-                <FontAwesomeIcon icon={faChevronRight} />
+              <button onClick={() => handleNext()}>
+                <FontAwesomeIcon className={cx('icon')} icon={faChevronRight} />
               </button>
             </div>
           </div>
         </div>
         <div className={cx('content')}>
-          <TagsPopular />
+          <TagsPopular data={tag} />
         </div>
       </div>
     </main>

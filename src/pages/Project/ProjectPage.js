@@ -1,34 +1,56 @@
 import classNames from 'classnames/bind';
-// import ky from 'ky';
 import Tippy from '@tippyjs/react/headless';
 import styles from './ProjectPage.module.scss';
-import { useState } from 'react';
-import BroadProject from '../../components/BroadProject/BroadProject';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAnglesLeft,
+  faAnglesRight,
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight
+} from '@fortawesome/free-solid-svg-icons';
 import SortProject from '../../components/SortProject/SortProject';
+import StackProject from '../../components/StackProject/StackProject';
+import Button from '../../components/Button/Button';
+import kyProjects from '../../api/kyProject';
 const cx = classNames.bind(styles);
 function ProjectPage() {
-  // const [item, setitem] = useState([]);
-  // useEffect(() => {
-  //     async function getData() {
-  //         const response = await ky(
-  //             "https://bestofjs-static-api.vercel.app/projects.json?_limit=10",
-  //             {
-  //                 retry: {
-  //                     limit: 10,
-  //                     methods: ["get"],
-  //                     statusCodes: [413],
-  //                     backoffLimit: 3000,
-  //                 },
-  //             }
-  //         ).json();
-  //         const data = await response.projects;
-  //         return setitem(data);
-  //     }
-  //     console.log(item);
-  //     getData();
-  // }, []);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState({ start: 0, end: 30 });
+  const [length, setLenght] = useState(0);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await kyProjects.get(`projects.json`).json();
+        setData(response.projects.sort((a, b) => -a.stars + b.stars).slice(page.start, page.end));
+        setLenght(response.projects.length);
+      } catch (error) {
+        console.log('Failed:', error);
+      }
+    }
+    getData();
+  }, [page]);
+  const handlePrev = () => {
+    if (page.start > 1) {
+      setPage({ start: page.start - 30, end: page.end - 30 });
+    } else {
+      return;
+    }
+  };
+  const handleStart = () => {
+    setPage({ start: 0, end: 30 });
+  };
+  const handleEnd = () => {
+    setPage({ start: length - 31, end: length });
+  };
+  const handleNext = () => {
+    if (page.end <= length - 1) {
+      setPage({ start: page.start + 30, end: page.end + 30 });
+    } else {
+      return;
+    }
+  };
   const [visible, setVisible] = useState(false);
   const sort = (attrs) => (
     <div tabIndex="-1" {...attrs}>
@@ -41,7 +63,7 @@ function ProjectPage() {
     <main className={cx('wrapper-project-page')}>
       <div className={cx('container')}>
         <div className={cx('title')}>
-          <h1>All Project</h1>
+          <h1> All Project</h1>
           <div className={cx('arrow')}>
             <Tippy
               visible={visible}
@@ -49,24 +71,46 @@ function ProjectPage() {
               placement="bottom-end"
               render={sort}
               onClickOutside={() => setVisible(false)}>
-              <button className={cx('sort')} onClick={() => setVisible(!visible)}>
-                Sort: By total number of stars
-                <FontAwesomeIcon className={cx('icon')} icon={faChevronDown} />
-              </button>
+              <div onClick={() => setVisible(!visible)}>
+                <Button>
+                  <span>Sort: By total number of stars</span>
+                  <FontAwesomeIcon className={cx('icon')} icon={faChevronDown} />
+                </Button>
+              </div>
             </Tippy>
             <div className={cx('arrow-pages')}>
-              {`Showing 1 - 30 of 1800 `}
-              <button>
-                <FontAwesomeIcon icon={faChevronLeft} />
+              {`Showing ${page.start + 1} - ${page.end} of ${length} `}
+              <button onClick={() => handlePrev()}>
+                <FontAwesomeIcon className={cx('icon')} icon={faChevronLeft} />
               </button>
-              <button>
-                <FontAwesomeIcon icon={faChevronRight} />
+              <button onClick={() => handleNext()}>
+                <FontAwesomeIcon className={cx('icon')} icon={faChevronRight} />
               </button>
             </div>
           </div>
         </div>
         <div className={cx('content')}>
-          <BroadProject />
+          {data.map((item, index) => (
+            <div key={index}>
+              <StackProject data={item} />
+            </div>
+          ))}
+        </div>
+        <div className={cx('arrow-project')}>
+          <div className={cx('btn')}>
+            <button onClick={() => handleStart()}>
+              <FontAwesomeIcon icon={faAnglesLeft} />
+            </button>
+            <button onClick={() => handlePrev()}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <button onClick={() => handleNext()}>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+            <button onClick={() => handleEnd()}>
+              <FontAwesomeIcon icon={faAnglesRight} />
+            </button>
+          </div>
         </div>
       </div>
     </main>
