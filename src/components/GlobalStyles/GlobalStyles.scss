@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 
 :root{
-    --color-hover: #ececec;
-    --color-text-h1-h2:#541600;
-    --color-text:#87563e;
-    --color-text-active:#e65100;
-    --color-hover-2: #feebc8;
 }
 *{
     box-sizing: border-box;
@@ -16,12 +11,40 @@
 html{
 }
 body{
+    --color-border:#e1e1e1;
     font-family: 'Poppins', sans-serif;
     font-size: 1.3rem;
     background-color: #f2f0f0;
     -webkit-user-select: none;
     user-select: none;
+    --background-color-card:#ffffff;
+    --color-text-p:#87563e;
+    --color-title:#541600;
+    --color-a:#e65100;
+    --color-btn:#ffffff;
+    --color-icon:#87563e;
+    --color-title-item:#cc4700;
+    --background-color-hover: #dddddd;
+    --background-color-hover-drop:#feebc8;
+    transition: all linear 0.3s;
+    --background-author:#f2f0f0;
     ul{
         list-style: none;
     }
+}
+.dark-mode{
+    --color-border: #5c5c5c;
+    background-color: #1a1a1a;
+    --background-color-card:#333333;
+    --color-text-p:#e1e1e1;
+    --color-title:#e1e1e1;
+    --color-a:#f6ad55;
+    --color-icon:#bbb;
+    --color-title-item:#f6ad55;
+    --color-btn:#ffffff14;
+    --color-btn-hover:#bbb;
+    --background-color-hover: rgba(161, 161, 161, 0.08);
+    --background-color-hover-drop:#555454;
+    --background-author:#5c5959;
+
 }

@@ -6,31 +6,7 @@
         height: fit-content;
         .tags{
             margin-top: 10px;
-            width: 100%;
-            .view-full{
-                height: 55px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-top: 1px dashed  #bdb1b0;
-                border-bottom: 1px dashed  #bdb1b0;
-                background-color: #ffffff;
-                text-decoration: none;
-                span{
-                    cursor: pointer;
-                    color: rgb(182, 168, 168);
-                    display: flex;
-                    align-items: center;
-                    &:hover{
-                        text-decoration: underline;
-                        color: var(--color-text);
-                    }
-                    .icon{
-                        margin-left: 5px;
-                        font-size: 13px;
-                    }
-                }
-            }
+            width: 100%;    
         }
     }
 }

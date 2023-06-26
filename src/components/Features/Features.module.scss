@@ -16,13 +16,11 @@
             .title{
                 h3{
                     font-size: 24px;
-                    color: var(--color-text-h1-h2);
-
+                    color: var(--color-title);
                 }
                 span{
                     font-size: 16px;
-                    color: var(--color-text);
-
+                    color: var(--color-text-p);
                 }
             }
             .btn{
@@ -40,6 +38,11 @@
             }
         }
         .feature{
+            .line-infiniti{
+                height: 2px;
+                background-color: var(--color-a);
+                animation: run infinite 10s linear;
+            }
             margin-top: 10px;
             width: 100%;
             .view-full{
@@ -47,9 +50,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-top: 1px dashed  #bdb1b0;
-                border-bottom: 1px dashed  #bdb1b0;
-                background-color: #ffffff;
+                border-bottom: 1px dashed  var(--color-border);
+                background-color: var(--background-color-card);
                 text-decoration: none;
                 span{
                     cursor: pointer;
@@ -58,7 +60,6 @@
                     align-items: center;
                     &:hover{
                         text-decoration: underline;
-                        color: var(--color-text);
                     }
                     .icon{
                         margin-left: 5px;
@@ -69,3 +70,11 @@
         }
     }
 }
+@keyframes run {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
