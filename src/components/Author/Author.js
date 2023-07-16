@@ -27,11 +27,9 @@ function Author({ hero }) {
             </div>
           ))}
         </div>
-
         <div className={cx('bio')}>
           <span>{hero.bio}</span>
         </div>
-
         <div className={cx('blog')}>
           <FontAwesomeIcon className={cx('icon')} icon={faEarth} />
           <a target="blank" href={hero.blog}>

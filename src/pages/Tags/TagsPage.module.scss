@@ -66,3 +66,20 @@
         }
     }
 }
+@media screen and (max-width:800px) {
+    .wrapper-tag-page{
+        padding: 0;
+        .container{
+            width: 100%;
+            .title{
+                padding: 0 20px;
+                .arrow{
+                    display: block;
+                    .arrow-pages{
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

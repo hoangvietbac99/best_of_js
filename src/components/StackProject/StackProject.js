@@ -45,7 +45,6 @@ function StackProject({ data }) {
             ))}
           </div>
         </div>
-        <div className={cx('time')}></div>
         <div className={cx('star')}>
           <span>{`+${stars}k`}</span>
           <StarOutlined className={cx('icon')} />

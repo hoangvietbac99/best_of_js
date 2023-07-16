@@ -8,7 +8,6 @@
         display: flex;
         height: fit-content;
         justify-content: center;
-
         .container{
             padding: 50px 0;
             width: 1000px;
@@ -139,5 +138,24 @@
         height: 8px;
         width: 100%;
         background-image: linear-gradient(135deg, rgb(255, 227, 140) 20%, rgb(255, 174, 99) 20%, rgb(255, 174, 99) 40%, rgb(247, 109, 66) 40%, rgb(247, 109, 66) 60%, rgb(214, 60, 74) 60%, rgb(214, 60, 74) 80%, rgb(156, 0, 66) 80%);
+    }
+}
+@media screen and (max-width:800px) {
+    .wrapper-footer{
+        .wrapper-container{
+            .container{
+                width: 100%;
+                .footer-top{
+                    display: block;
+                    .direct-links{
+                        margin-left: 0;
+                        margin-top: 10px;
+                    }
+                    .related-projects{
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
     }
 }

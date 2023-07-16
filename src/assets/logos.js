@@ -4,6 +4,7 @@ const logos = {
   github: require('./logos/github.svg').default,
   npm: require('./logos/npm.svg').default,
   logoFooter: require('./logos/logofooter.png'),
-  risingStars: require('./logos/rising-stars.png')
+  risingStars: require('./logos/rising-stars.png'),
+  darkDc: require('./logos/discord.svg').default
 };
 export default logos;

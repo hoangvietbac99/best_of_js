@@ -8,7 +8,7 @@ import linkPages from '../../pages/linksPages';
 import MoreBtn from '../MoreBtn/MoreBtn';
 import DropdownBM from '../DropdownBM/DropdownBM';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronDown, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { GithubOutlined } from '@ant-design/icons';
 
 const menuPages = [
@@ -26,6 +26,46 @@ const menuPages = [
     Title: 'Tags',
     docTitle: 'All Tags',
     to: linkPages.tagsPage
+  }
+];
+const subMenu = [
+  {
+    title: 'Project',
+    docTitle: 'All Projects',
+    link: linkPages.projectPage
+  },
+  {
+    title: 'Tags',
+    docTitle: 'All Tags',
+    link: linkPages.tagsPage
+  },
+  {
+    title: 'Monthly Rankings',
+    docTitle: 'Monthly Rankings',
+    link: linkPages.monthlyRanking
+  },
+  {
+    title: 'Hall of Fame',
+    docTitle: 'Hall of Fame',
+    link: linkPages.hallOfFame
+  },
+  {
+    title: 'Timeline',
+    docTitle: 'Timeline',
+    link: linkPages.timeline
+  },
+  {
+    title: 'About',
+    docTitle: 'About',
+    link: linkPages.about
+  },
+  {
+    title: 'Rising Starts',
+    link: 'https://risingstars.js.org/2022/en'
+  },
+  {
+    title: 'State of JS',
+    link: 'https://stateofjs.com/en-us/'
   }
 ];
 const cx = classNames.bind(styles);
@@ -174,7 +214,11 @@ function HeaderMain() {
               className={cx('link-to')}
               href="https://discord.com/invite/rdctdFX2qR"
               target="blank">
-              <img alt="" src={logos.discord} className={cx('icon')} />
+              {theme ? (
+                <img alt="" src={logos.darkDc} className={cx('icon')} />
+              ) : (
+                <img alt="" src={logos.discord} className={cx('icon')} />
+              )}
             </a>
             <a
               className={cx('link-to')}
@@ -182,6 +226,24 @@ function HeaderMain() {
               target="blank">
               <GithubOutlined className={cx('icon')} />
             </a>
+          </div>
+          <div className={cx('menu-home')}>
+            <label className={cx('label')} htmlFor="home">
+              <FontAwesomeIcon icon={faBars} />
+            </label>
+          </div>
+          <input type="checkbox" className={cx('input-home')} id="home" />
+          <div className={cx('sub-menu')}>
+            <label htmlFor="home">
+              <FontAwesomeIcon className={cx('icon')} icon={faXmark} />
+            </label>
+            <div className={cx('menu')}>
+              {subMenu.map((title, index) => (
+                <div className={cx('item')} key={index}>
+                  <Link to={title.link}>{title.title}</Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -380,3 +380,54 @@
         }
     }
 }
+@media screen and (max-width:800px) {
+    .wrapper-home-page{
+        padding: 0;
+        .container{
+            width: 100%;
+            h1{
+                padding: 0 20px;
+            }
+            .broad-project{
+                .broad{
+                    width: 100%;
+                    .hot-project{
+                        .title-pj{
+                            padding: 0 15px;
+                            .title{
+                                width: 60%;
+                            }
+                        }
+                    }
+                    .recently{
+                        .title-pj{
+                            padding: 0 15px;
+                        }
+                    }
+                }
+                .feature{
+                    display: none;
+                }
+            }
+            .ranking{
+                .title-pj{
+                    padding: 0 15px;
+                }
+                .arrow{
+                    padding: 0 15px;
+                }
+            }
+            .evaluate{
+                display: block;
+                padding: 15px;
+                .content{
+                    width: 100%;
+                }
+                .link{
+                    position: static;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
