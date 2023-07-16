@@ -1,28 +1,16 @@
-import classNames from 'classnames/bind';
-import styles from './DropdownBM.module.scss';
-const cx = classNames.bind(styles);
+import DropDown from '../DropDown/DropDown';
 const logOut = [
   {
     title: 'Bookmarks',
-    to: '/'
+    link: '/bookmarks'
   },
   {
     title: 'Sign out',
-    to: '/'
+    link: '/sign-out'
   }
 ];
 function DropdownBM() {
-  return (
-    <div className={cx('wrapper-logout')}>
-      <div className={cx('container')}>
-        {logOut.map((item, index) => (
-          <div key={index} className={cx('item')}>
-            {item.title}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <DropDown data={logOut} />;
 }
 
 export default DropdownBM;

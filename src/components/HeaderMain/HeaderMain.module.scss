@@ -105,10 +105,10 @@
             align-items: center;
             .account-theme{
                 align-items: center;
-                justify-content: space-between;
                 display: flex;
                 width: 55%;
                 height: 100%;
+                justify-content: flex-end;
                 .btn-account{
                     cursor: pointer;
                     width: 80px;
@@ -173,7 +173,7 @@
                     border-radius: 5px;
                     margin-left: 15px;
                     &:hover{
-                        background-color: #c7b7b7;
+                        background-color: var(--background-color-hover);
                     }
                     .icon{
                         color: var(--color-icon);
@@ -186,12 +186,100 @@
                 color: var(--color-icon); 
             }
             .menu-home{
-                display: flex;
-                align-items: center;
-                color: var(--color-icon);
-                margin-left: 15px;
-                font-size: 25px;
                 display: none;
+                .label{
+                    cursor: pointer;
+                    color: var(--color-icon);
+                    align-items: center;
+                    font-size: 25px;
+                    margin-left: 15px;
+                }
+            }
+            .input-home{
+                display: none;
+            }
+            .input-home:checked ~.sub-menu{
+                transform: translateX(0%);
+            }
+            .sub-menu{
+                transition: all .3s ease;
+                position: fixed;
+                z-index: 1;
+                right: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                transform: translateX(100%);
+                border-radius: 5px;
+                display: flex;
+                background-color: var(--background-color-card);
+                .menu{
+                    width: 100%;
+                    height: 100%;
+                    margin-top: 50px;
+                    .item{
+                        cursor: pointer;
+                        padding: 5px 50px;
+                        width: 100%;
+                        height: fit-content;
+                        ;
+                        &:hover{
+                            background-color: var(--background-color-hover-drop);
+                        }
+                        a{
+                            width: 100%;
+                            height: 25px;
+                            color: var(--color-text-p);
+                            text-decoration: none;
+                            display: flex;
+                            justify-content: center
+                        }
+                    }
+                }
+                label{
+                    cursor: pointer;
+                    color: var(--color-icon);
+                    align-items: center;
+                    font-size: 25px;
+                    .icon{
+                        position: absolute;
+                        right: 0;
+                        margin: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:1024px) {
+    .wrapper-header-main{
+        .container{
+            .header-right{
+                .account-theme{
+                    .btn-account{
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:800px) {
+    .wrapper-header-main{
+        .container{
+            .header-left{
+                .menu-page{
+                    display: none;
+                }
+            }
+            .header-right{
+                .account-theme{
+                    .btn-account{
+                        display: none;
+                    }
+                }
+                .menu-home{
+                    display: flex;
+                }
             }
         }
     }

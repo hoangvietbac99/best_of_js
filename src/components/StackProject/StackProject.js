@@ -1,10 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './StackProject.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faStar } from '@fortawesome/free-regular-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import logos from '../../assets/logos';
+import { BookOutlined, GithubOutlined, HomeOutlined, StarOutlined } from '@ant-design/icons';
 const cx = classNames.bind(styles);
 function StackProject({ data }) {
   const tags = data.tags;
@@ -27,13 +24,13 @@ function StackProject({ data }) {
             <Link to={`/projects/${data.full_name}`}>{data.name}</Link>
             <div className={cx('link')}>
               <a className={cx('external')} href={`https://github.com/${data.name}`} target="blank">
-                <img className={cx('icon')} src={logos.github} alt="" />
+                <GithubOutlined className={cx('icon')} />
               </a>
               <a className={cx('external')} href={data.url} target="blank">
-                <FontAwesomeIcon className={cx('icon')} icon={faHome} />
+                <HomeOutlined className={cx('icon')} />
               </a>
               <div className={cx('external')}>
-                <FontAwesomeIcon className={cx('icon')} icon={faBookmark} />
+                <BookOutlined className={cx('icon')} />
               </div>
             </div>
           </div>
@@ -48,10 +45,9 @@ function StackProject({ data }) {
             ))}
           </div>
         </div>
-        <div className={cx('time')}></div>
         <div className={cx('star')}>
           <span>{`+${stars}k`}</span>
-          <FontAwesomeIcon className={cx('icon')} icon={faStar} />
+          <StarOutlined className={cx('icon')} />
         </div>
       </div>
     </div>

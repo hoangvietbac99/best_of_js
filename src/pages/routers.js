@@ -8,6 +8,7 @@ import RankingPage from './Ranking/RankingPage';
 import HallOfFame from './HallOfFame/HallOfFame';
 import Timeline from './Timeline/Timeline';
 import InfoPage from './InfoPage/InfoPage';
+import FeaturedPage from './FeaturedPage/FeaturedPage';
 
 const routers = [
   { path: linkPages.homePage, component: HomePage, layout: LayoutMain },
@@ -21,6 +22,7 @@ const routers = [
   { path: linkPages.hallOfFame, component: HallOfFame, layout: LayoutMain },
   { path: linkPages.info, component: InfoPage, layout: LayoutMain },
   { path: linkPages.timeline, component: Timeline, layout: LayoutMain },
-  { path: linkPages.about, component: AboutPage, layout: LayoutMain }
+  { path: linkPages.about, component: AboutPage, layout: LayoutMain },
+  { path: linkPages.featurePage, component: FeaturedPage, layout: LayoutMain }
 ];
 export default routers;

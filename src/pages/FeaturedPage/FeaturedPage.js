@@ -1,8 +1,12 @@
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
-import styles from './ProjectPage.module.scss';
-import { useEffect, useState } from 'react';
+import styles from './FeaturedPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import kyProjects from '../../api/kyProject';
+import { useState, useEffect } from 'react';
+import Tippy from '@tippyjs/react/headless';
+import Button from '../../components/Button/Button';
+import SortProject from '../../components/SortProject/SortProject';
 import {
   faAnglesLeft,
   faAnglesRight,
@@ -10,23 +14,26 @@ import {
   faChevronLeft,
   faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
-import SortProject from '../../components/SortProject/SortProject';
 import StackProject from '../../components/StackProject/StackProject';
-import Button from '../../components/Button/Button';
-import kyProjects from '../../api/kyProject';
 const cx = classNames.bind(styles);
-function ProjectPage() {
-  const [data, setData] = useState([]);
+function FeaturedPage() {
+  const [feature, setFeature] = useState([]);
+  const [show, setShow] = useState(false);
   const [page, setPage] = useState({ start: 0, end: 30 });
   const [length, setLenght] = useState(0);
+  const checkIcon = (a) => {
+    return a.icon;
+  };
   useEffect(() => {
     async function getData() {
       try {
-        const response = await kyProjects.get(`projects.json`).json();
-        setData(response.projects.sort((a, b) => -a.stars + b.stars).slice(page.start, page.end));
-        setLenght(response.projects.length);
+        const response = await kyProjects.get('projects.json').json();
+        const tagsArr = response.projects;
+        const arr = tagsArr.filter(checkIcon);
+        setFeature(arr.slice(page.start, page.end));
+        setLenght(arr.length);
       } catch (error) {
-        console.log('Failed:', error);
+        console.log('Failed', error);
       }
     }
     getData();
@@ -51,7 +58,6 @@ function ProjectPage() {
       return;
     }
   };
-  const [visible, setVisible] = useState(false);
   const sort = (attrs) => (
     <div tabIndex="-1" {...attrs}>
       <div>
@@ -59,19 +65,23 @@ function ProjectPage() {
       </div>
     </div>
   );
+  console.log(feature);
   return (
-    <main className={cx('wrapper-project-page')}>
+    <div className={cx('wrapper-featured-page')}>
       <div className={cx('container')}>
         <div className={cx('title')}>
-          <h1> All Project</h1>
+          <h1>
+            <FontAwesomeIcon className={cx('icon')} icon={faStar} /> Featured projects
+          </h1>
+          <p>An arbitrary selection of important projects with distinct logos.</p>
           <div className={cx('arrow')}>
             <Tippy
-              visible={visible}
+              visible={show}
               interactive
               placement="bottom-end"
               render={sort}
-              onClickOutside={() => setVisible(false)}>
-              <div onClick={() => setVisible(!visible)}>
+              onClickOutside={() => setShow(false)}>
+              <div onClick={() => setShow(!show)}>
                 <Button>
                   <span>Sort: By total number of stars</span>
                   <FontAwesomeIcon className={cx('icon')} icon={faChevronDown} />
@@ -90,7 +100,7 @@ function ProjectPage() {
           </div>
         </div>
         <div className={cx('content')}>
-          {data.map((item, index) => (
+          {feature.map((item, index) => (
             <div key={index}>
               <StackProject data={item} />
             </div>
@@ -113,8 +123,8 @@ function ProjectPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 
-export default ProjectPage;
+export default FeaturedPage;

@@ -1,7 +1,7 @@
 const linkPages = {
   homePage: '/',
   projectPage: '/projects',
-  info: 'projects/:full_name',
+  info: '/projects/:name/:full_name',
   tagsPage: '/tags',
   monthlyRanking: '/monthly',
   hallOfFame: '/hall-of-fame',

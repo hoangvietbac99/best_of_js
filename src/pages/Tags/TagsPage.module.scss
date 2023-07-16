@@ -10,7 +10,7 @@
         .title{
             h1{
                 font-size: 32px;
-                color: var(--color-text-h1-h2);
+                color: var(--color-title);
                 margin-bottom: 20px;
             }
             .arrow{
@@ -19,15 +19,15 @@
                 align-items: center;
                 .sort{
                     font-size: 16px;
-                    color: var(--color-text-h1-h2);
-                    background-color: #ffffff;
+                    color: var(--color-text-p);
+                    background-color: var(--background-color-card);
                     cursor: pointer;
                     width: fit-content;
                     padding: 10px;
                     border: 1px solid rgb(199, 194, 194);
                     border-radius: 5px;
                     &:hover{
-                        background-color: var(--color-hover);
+                        background-color: var(--background-color-hover);
                     }
                     .icon{
                         margin-left: 10px;
@@ -37,18 +37,24 @@
                     display: flex;
                     align-items: center;
                     font-size: 18px;
-                    color: var(--color-text-h1-h2);
+                    color: var(--color-text-p);
+                    span{
+                        color: var(--color-text-p);
+                    }
                     button{
-                        background-color: #ffffff;
+                        background-color:var(--color-btn);
                         cursor: pointer;
                         margin-left: 10px;
                         width: 40px;
                         height: 40px;
                         border-radius: 50%;
                         border: 1px solid rgb(150, 148, 148);
-                        opacity: .6;
+                        transition: all linear .2s;
                         &:hover{
-                            opacity: 1;
+                            background-color: var(--background-color-hover);
+                        }
+                        .icon{
+                            color: var(--color-icon);
                         }
                     }
                 }
@@ -57,6 +63,23 @@
         .content{
             display: flex;
             margin-top: 10px;
+        }
+    }
+}
+@media screen and (max-width:800px) {
+    .wrapper-tag-page{
+        padding: 0;
+        .container{
+            width: 100%;
+            .title{
+                padding: 0 20px;
+                .arrow{
+                    display: block;
+                    .arrow-pages{
+                        margin-top: 10px;
+                    }
+                }
+            }
         }
     }
 }

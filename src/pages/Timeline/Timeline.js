@@ -2,9 +2,22 @@ import classNames from 'classnames/bind';
 import styles from './Timeline.module.scss';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import dataTimeLine from './dataTimeLine.json';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
-
+const extraProjects = [
+  { id: 'threejs', name: 'Three.js', year: 2010 },
+  { id: 'backbone', name: 'Backbone', year: 2010 },
+  { id: 'meteor', name: 'Meteor', year: 2012 },
+  { id: 'jest', name: 'Jest', year: 2013 },
+  { id: 'redux', name: 'Redux', year: 2015 },
+  { id: 'rollup', name: 'Rollup', year: 2015 },
+  { id: 'gatsby', name: 'Gastby', year: 2015 },
+  { id: 'storybook', name: 'Storybook', year: 2016 },
+  { id: 'parcel', name: 'Parcel', year: 2017 }
+];
 function Timeline() {
+  console.log(dataTimeLine);
   return (
     <main className={cx('wrapper-timeline')}>
       <div className={cx('container')}>
@@ -21,127 +34,51 @@ function Timeline() {
         </div>
         <div className={cx('content')}>
           <VerticalTimeline>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              dateClassName={'date'}
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              date="2010 - 2011"
-              iconStyle={{
-                borderRadius: '0px'
-              }}
-              icon={
-                <img
-                  className={cx('logo')}
-                  src="https://avatars.githubusercontent.com/u/97241560?v=3&s=50"
-                  alt=""
-                />
-              }>
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
-              <p>Creative Direction, User Experience, Visual Design, SEO, Online Marketing</p>
-            </VerticalTimelineElement>
+            {dataTimeLine.map((item) => (
+              <VerticalTimelineElement
+                key={item.slug}
+                className={cx('a')}
+                date={item.date}
+                iconStyle={{
+                  background: 'var(--color-title)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 4
+                }}
+                icon={<img className={cx('logo')} src={item.avatar} alt="" />}>
+                <div className={cx('wrapper-item-timeline')}>
+                  <h4>{item.slug}</h4>
+                  {item.comments.map((cmt, index) => (
+                    <p key={index}>{cmt}</p>
+                  ))}
+                </div>
+              </VerticalTimelineElement>
+            ))}
           </VerticalTimeline>
+        </div>
+        <div className={cx('about')}>
+          <h2>About this timeline / Disclaimer</h2>
+          <p>We could have mentioned a lot of other projects:</p>
+          <div className={cx('mentioned')}>
+            {extraProjects.map((item, index) => (
+              <div key={index}>
+                <Link to={`projects/${item.id}`} className={cx('link')}>{`• ${item.name}`}</Link>
+                <span>{`(${item.year})`}</span>
+              </div>
+            ))}
+          </div>
+          <p>...but we had to make choices to keep this timeline compact.</p>
+          <p>The 2 main constraints were:</p>
+          <p>
+            • We wanted <b>20</b> projects because we are in 2020
+          </p>
+          <p>• We wanted at least one project for every year between 2010 and 2020.</p>
+          <p>
+            The date displayed for each project is the date of the creation of the repository on
+            GitHub, except for the following projects: jQuery, Node.js, and TypeScript.
+          </p>
+          <p>Thank you for your understanding!</p>
         </div>
       </div>
     </main>

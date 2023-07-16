@@ -3,6 +3,9 @@ import routers from './pages/routers';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       <Router>
@@ -19,8 +22,24 @@ function App() {
                     <Layout>
                       <Page />
                     </Layout>
-                  }
-                />
+                  }>
+                  <Route
+                    path=":id"
+                    element={
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    }
+                  />
+                  <Route
+                    path=":id"
+                    element={
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    }
+                  />
+                </Route>
               );
             })}
           </Routes>
