@@ -53,23 +53,25 @@ function InfoPage() {
     <main className={cx('wrapper-info-page')}>
       <div className={cx('container')}>
         <div className={cx('info')}>
-          <div className={cx('avt')}>
-            <img
-              src={`https://avatars.githubusercontent.com/u/${github.owner_id}?v=3&s=75`}
-              alt=""
-            />
-          </div>
-          <div className={cx('desc')}>
-            <h2>{data.name}</h2>
-            <p>{data.description}</p>
-            <div className={cx('tags')}>
-              {tags.map((tag, index) => (
-                <div key={index}>
-                  <button>
-                    <span>{tag}</span>
-                  </button>
-                </div>
-              ))}
+          <div className={cx('title')}>
+            <div className={cx('avt')}>
+              <img
+                src={`https://avatars.githubusercontent.com/u/${github.owner_id}?v=3&s=75`}
+                alt=""
+              />
+            </div>
+            <div className={cx('desc')}>
+              <h2>{data.name}</h2>
+              <p>{data.description}</p>
+              <div className={cx('tags')}>
+                {tags.map((tag, index) => (
+                  <div key={index}>
+                    <button>
+                      <span>{tag}</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className={cx('right')}>
