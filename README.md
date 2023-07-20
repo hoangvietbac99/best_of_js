@@ -25,6 +25,7 @@ This project implements features:
 
 - Hot Projects
 - Monthly Ranking
+- TODO: search feature
 
 ## Demo
 
