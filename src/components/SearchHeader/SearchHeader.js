@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './SearchHeader.module.scss';
-import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import ResultSearch from '../ResultSearch/ResultSearch';
@@ -9,11 +8,12 @@ import kyProject from '../../components/../api/kyProject';
 const cx = classNames.bind(styles);
 function SearchHeader() {
   const inputRef = useRef();
+  const [showRs, setShowRs] = useState(false);
   const [tag, setTag] = useState([]);
-  const [visible, setVisible] = useState(false);
   const [valueInput, setValueInput] = useState([]);
 
-  const handleFocus = () => {
+  const handleShowResult = () => {
+    setShowRs(!showRs);
     setTimeout(() => {
       inputRef.current.focus();
     }, 0);
@@ -40,39 +40,33 @@ function SearchHeader() {
   }, []);
   return (
     <div className={cx('wrapper-search-header')}>
-      <Tippy
-        visible={visible}
-        interactive
-        onClickOutside={() => setVisible(false)}
-        placement="bottom-start"
-        render={(attrs) => (
-          <div tabIndex="-1" {...attrs} className={cx('result')}>
+      <div className={cx('container')}>
+        <div className={cx('wrapper-search')}>
+          <input
+            onChange={(e) => handleChangeValue(e)}
+            value={valueInput}
+            ref={inputRef}
+            className={cx('input-search')}
+            type="text"
+            placeholder="Pick tags or enter keywords"
+          />
+        </div>
+        <div className={cx('wrapper-arrow')}>
+          <div className={cx('btn-arrow')} onClick={() => handleShowResult()}>
+            <div className={cx('line')}></div>
+            <FontAwesomeIcon className={cx('icon')} icon={faChevronDown} />
+          </div>
+        </div>
+        {showRs && (
+          <div className={cx('result')}>
             {tag.map((tag, index) => (
               <div key={index}>
                 <ResultSearch data={tag} onClick={(tag) => getTag(tag)} />
               </div>
             ))}
           </div>
-        )}>
-        <div className={cx('container')} onClick={() => setVisible(true)}>
-          <div className={cx('wrapper-search')}>
-            <input
-              onChange={(e) => handleChangeValue(e)}
-              value={valueInput}
-              ref={inputRef}
-              className={cx('input-search')}
-              type="text"
-              placeholder="Pick tags or enter keywords"
-            />
-          </div>
-          <div className={cx('wrapper-arrow')}>
-            <div className={cx('btn-arrow')} onClick={() => handleFocus()}>
-              <div className={cx('line')}></div>
-              <FontAwesomeIcon className={cx('icon')} icon={faChevronDown} />
-            </div>
-          </div>
-        </div>
-      </Tippy>
+        )}
+      </div>
     </div>
   );
 }

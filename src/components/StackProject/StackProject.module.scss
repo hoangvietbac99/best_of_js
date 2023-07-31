@@ -21,7 +21,7 @@
             }
         }
         .information{
-            margin-left: 15px;
+            margin: 0 10px;
             .name-link{
                 display: flex;
                 align-items: center;
@@ -36,7 +36,9 @@
                 }
                 .link{
                     display: flex;
+                    z-index: 1;
                     .external{
+                        margin-right: 5px;
                         cursor: pointer;
                         display: flex;
                         justify-content: center;
@@ -83,10 +85,10 @@
         }
         .star{
             color: var(--color-text-p);
-            position: absolute;
-            display: flex;
             justify-content: center;
             align-items: center;
+            position: absolute;
+            display: flex;
             width: 100px;
             height: 100%;
             right: 0;
@@ -102,6 +104,20 @@
     }
 }
 @media screen and (max-width:800px) {
+    .wrapper-stack-project{
+        .container{
+            .star{
+                width: 50px;
+                justify-content: flex-end;
+                span{
+                    font-size: 14px;
+                }
+                .icon{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
     .desc{
         width: 75%;
     }

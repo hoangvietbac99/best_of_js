@@ -17,7 +17,6 @@ const extraProjects = [
   { id: 'parcel', name: 'Parcel', year: 2017 }
 ];
 function Timeline() {
-  console.log(dataTimeLine);
   return (
     <main className={cx('wrapper-timeline')}>
       <div className={cx('container')}>

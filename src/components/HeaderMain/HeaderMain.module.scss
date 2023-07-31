@@ -4,6 +4,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .wrapper-dropdown-more{
+        .wrapper-dropdown{
+            width: 200px;
+            height: 240px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            .container{
+                border-radius: 5px;
+                width: 100%;
+                height: 100%;
+                background-color: var(--background-color-card);
+                border: 1px solid rgb(206, 206, 206);
+                padding: 10px 0;
+                .link-page{
+                    text-decoration: none;
+                    color: var(--color-text-p);
+                    font-size: 17px;
+                    .item-dropdown{
+                        width: 100%;
+                        height: 35px;
+                        padding: 10px;
+                        display: flex;
+                        align-items:center;
+                        transition: all .2s ease-out;
+                        &:hover{
+                            background-color: var(--background-color-hover-drop)
+                        }
+                    }
+                }
+            }
+        }
+
+    }
     .container{
         .header-left{
             display: flex;
@@ -213,6 +245,7 @@
                 border-radius: 5px;
                 display: flex;
                 background-color: var(--background-color-card);
+                z-index: 2;
                 .menu{
                     width: 100%;
                     height: 100%;
@@ -276,9 +309,59 @@
                     .btn-account{
                         display: none;
                     }
+                    .theme{
+                        margin-right: 0;
+                    }
                 }
                 .menu-home{
                     display: flex;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px){
+    .wrapper-header-main{
+        .container{
+            .header-left{
+                .logo{
+                    .logo-page{
+                        width: 100px;
+                    }
+                }
+                .menu-page{
+                    display: none;
+                }
+            }
+            .header-right{
+                .account-theme{
+                    .btn-account{
+                        display: none;
+                    }
+                    .theme{
+                        margin-left: 0;
+                        margin-right: 0;
+                        .icon{
+                            font-size: 20px;
+                        }
+                    }
+                }
+                .discord-github{
+                    .link-to{
+                        margin-left: 5px;
+                        .icon{
+                            font-size: 20px;
+                            width: 20px;
+                            height: 20px;
+
+                        }
+                    }
+                }
+                .menu-home{
+                    display: flex;
+                    .icon{
+                        font-size: 22px;
+                    }
                 }
             }
         }

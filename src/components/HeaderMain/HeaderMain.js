@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import styles from './HeaderMain.module.scss';
 import logos from '../../assets/logos';
 import linkPages from '../../pages/linksPages';
-import MoreBtn from '../MoreBtn/MoreBtn';
 import DropdownBM from '../DropdownBM/DropdownBM';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { GithubOutlined } from '@ant-design/icons';
+const cx = classNames.bind(styles);
 
 const menuPages = [
   {
@@ -68,7 +68,32 @@ const subMenu = [
     link: 'https://stateofjs.com/en-us/'
   }
 ];
-const cx = classNames.bind(styles);
+const morePages = [
+  {
+    title: 'Monthly rankings',
+    link: linkPages.monthlyRanking
+  },
+  {
+    title: 'Hall of fame',
+    link: linkPages.hallOfFame
+  },
+  {
+    title: 'Timeline',
+    link: linkPages.timeline
+  },
+  {
+    title: 'About',
+    link: linkPages.about
+  },
+  {
+    title: 'Rising Starts',
+    link: 'https://risingstars.js.org/2022/en'
+  },
+  {
+    title: 'State of JS',
+    link: 'https://stateofjs.com/en-us/'
+  }
+];
 function HeaderMain() {
   const [visible, setVisible] = useState(false);
   const [logout, setLogout] = useState(false);
@@ -77,11 +102,28 @@ function HeaderMain() {
   const menuMore = (attrs) => (
     <div tabIndex="-1" {...attrs}>
       <div className={cx('wrapper-dropdown-more')}>
-        <MoreBtn />
+        <div className={cx('wrapper-dropdown')}>
+          <div className={cx('container')}>
+            {morePages.map((page, index) => (
+              <Link
+                key={index}
+                to={page.link}
+                className={cx('link-page')}
+                onClick={() => clearActive()}>
+                <div className={cx('item-dropdown')}>{page.title}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
-
+  const clearActive = () => {
+    const underline = document.getElementsByClassName(cx('active-line'));
+    if (underline.length === 1) {
+      underline[0].classList.remove(cx('active-line'));
+    } else return;
+  };
   const logOut = (attrs) => (
     <div tabIndex="-1" {...attrs}>
       <div className={cx('wrapper-dropdown-account')}>
@@ -89,6 +131,9 @@ function HeaderMain() {
       </div>
     </div>
   );
+  const handleClose = () => {
+    document.getElementById('home').checked = false;
+  };
   useEffect(() => {
     ///change theme
     if (theme === true) {
@@ -166,9 +211,9 @@ function HeaderMain() {
                   onClick={() => {
                     document.title = page.docTitle;
                   }}>
-                  <Link to={page.to} className={cx('link-page')}>
+                  <NavLink to={page.to} className={cx('link-page')}>
                     <span className={cx('title')}>{page.Title}</span>
-                  </Link>
+                  </NavLink>
                   <div className={cx('line')}></div>
                 </div>
               ))}
@@ -229,7 +274,7 @@ function HeaderMain() {
           </div>
           <div className={cx('menu-home')}>
             <label className={cx('label')} htmlFor="home">
-              <FontAwesomeIcon icon={faBars} />
+              <FontAwesomeIcon icon={faBars} className={cx('icon')} />
             </label>
           </div>
           <input type="checkbox" className={cx('input-home')} id="home" />
@@ -239,8 +284,8 @@ function HeaderMain() {
             </label>
             <div className={cx('menu')}>
               {subMenu.map((title, index) => (
-                <div className={cx('item')} key={index}>
-                  <Link to={title.link}>{title.title}</Link>
+                <div className={cx('item')} key={index} onClick={() => handleClose()}>
+                  <NavLink to={title.link}>{title.title}</NavLink>
                 </div>
               ))}
             </div>
